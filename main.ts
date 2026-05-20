@@ -87,12 +87,16 @@ namespace TM1650 {
         if (num < 0) {
             dat(0, 0x40) // '-'
             num = -num
+            digit(Math.idiv(num, 100) % 10, 1)
+            digit(Math.idiv(num, 10) % 10, 2)
+            digit(num % 10, 3)
         }
-        else
+        else {
             digit(Math.idiv(num, 1000) % 10, 0)
-        digit(num % 10, 3)
-        digit(Math.idiv(num, 10) % 10, 2)
-        digit(Math.idiv(num, 100) % 10, 1)
+            digit(Math.idiv(num, 100) % 10, 1)
+            digit(Math.idiv(num, 10) % 10, 2)
+            digit(num % 10, 3)
+        }
     }
 
     /**
@@ -105,12 +109,16 @@ namespace TM1650 {
         if (num < 0) {
             dat(0, 0x40) // '-'
             num = -num
+            digit((num >> 8) % 16, 1)
+            digit((num >> 4) % 16, 2)
+            digit(num % 16, 3)
         }
-        else
+        else {
             digit((num >> 12) % 16, 0)
-        digit(num % 16, 3)
-        digit((num >> 4) % 16, 2)
-        digit((num >> 8) % 16, 1)
+            digit((num >> 8) % 16, 1)
+            digit((num >> 4) % 16, 2)
+            digit(num % 16, 3)
+        }
     }
 
     /**
